@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h2>All Products</h2>
+        <div>
+            <h3 id="title" ></h3> <br>
+            <h2 id="price"></h2> <br>
+            <p id="location" ></p>
+        </div>
+
+        <script>
+            async function getAllProduct(){
+                const response = await fetch("/api/products",{
+                    method: "GET",
+                    headers : {"Accept":"application/json"}
+                })
+                if(response.ok === true){
+                    const products = await response.json();
+                    const title = document.getElementById("title")
+                    const price = document.getElementById("price")
+                    const location = document.getElementById("location")
+                    products.forEach((product) => title.append(product.title))
+                    
+                }
+            }
+            getAllProduct();
+        </script>
+</body>
+</html>
